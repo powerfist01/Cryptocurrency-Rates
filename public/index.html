@@ -1,29 +1,126 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Cryptocurrency Rates</title>
+<html lang="en">
 
-    <!-- update the version number as needed -->
-    <script defer src="/__/firebase/6.6.2/firebase-app.js"></script>
-    <!-- include only the Firebase features as you need -->
-    <script defer src="/__/firebase/6.6.2/firebase-auth.js"></script>
-    <script defer src="/__/firebase/6.6.2/firebase-database.js"></script>
-    <script defer src="/__/firebase/6.6.2/firebase-messaging.js"></script>
-    <script defer src="/__/firebase/6.6.2/firebase-storage.js"></script>
-    <!-- initialize the SDK after all desired features are loaded -->
-    <script defer src="/__/firebase/init.js"></script>
-	<!-- TODO: Add SDKs for Firebase products that you want to use
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="css/materialize.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Playfair+Display" rel="stylesheet">
+  <title>Cryptocurrency Rates</title>
+  <!-- update the version number as needed -->
+  <script defer src="/__/firebase/6.6.2/firebase-app.js"></script>
+  <!-- include only the Firebase features as you need -->
+  <script defer src="/__/firebase/6.6.2/firebase-auth.js"></script>
+  <script defer src="/__/firebase/6.6.2/firebase-database.js"></script>
+  <script defer src="/__/firebase/6.6.2/firebase-messaging.js"></script>
+  <script defer src="/__/firebase/6.6.2/firebase-storage.js"></script>
+  <!-- initialize the SDK after all desired features are loaded -->
+  <script defer src="/__/firebase/init.js"></script>
+  <!-- TODO: Add SDKs for Firebase products that you want to use
 	     https://firebase.google.com/docs/web/setup#available-libraries -->
-	<script src="/__/firebase/6.6.2/firebase-analytics.js"></script>
-  </head>
-  <body>
-    <div id="message">
-      <h2>Cryptocurrency Rates</h2>
-      <h1>Firebase Hosting Setup Complete</h1>
-      <p>You're seeing this because you've successfully setup Firebase Hosting. Now it's time to go build something extraordinary!</p>
-      <a target="_blank" href="https://firebase.google.com/docs/hosting/">Open Hosting Documentation</a>
+  <script src="/__/firebase/6.6.2/firebase-analytics.js"></script>
+</head>
+
+<body>
+  <div>
+    <h1 class="center">Cryptocurrency Rates Calculator</h1>
+  </div>
+  <div class="container main-content">
+    <!-- Page Content goes here -->
+    <div class="row">
+      <form class="col s8 offset-s2" id="form">
+        <div class="row">
+          <div class="form">
+            <div class="input-field col s12">
+              <select id="currency">
+                <option value="" disabled selected>- Select Currency - </option>
+                <option value="USD">USD</option>
+                <option value="EUR">Euro</option>
+                <option value="INR">Rupee</option>
+              </select>
+              <label>Currency</label>
+            </div>
+            <div class="input-field col s12">
+              <select id="cryptocurrency">
+                <option value="" disabled selected>- Select Cryptocurrency -</option>
+              </select>
+              <label>Cryptocurrency</label>
+            </div>
+            <div class="input-field col s12">
+              <button class="btn waves-effect waves-light orange darken-3" type="submit" name="action">Get Valuation
+                <i class="material-icons right">attach_money</i>
+              </button>
+            </div>
+            <div class="spinner"></div>
+            <div id="result" class="col s12"></div>
+          </div>
+          <!--.formulario-cotizar-->
+
+        </div>
+      </form>
     </div>
-  </body>
+
+    <!--Import jQuery before materialize.js-->
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" src="js/materialize.min.js"></script>
+
+
+    <script src="js/cryptoAPI.js"></script>
+    <script src="js/ui.js"></script>
+    <script src="js/app.js"></script>
+
+    <script>
+      (function () {
+        $(document).ready(function () {
+          setTimeout(() => {
+            $('select').select();
+          }, 4000);
+        });
+      })(jQuery);
+    </script>
+    <style>
+      body {
+        background: #136a8a;
+        background: -webkit-linear-gradient(to right, #136a8a, #267871);
+        background: linear-gradient(to right, #136a8a, #267871);
+      }
+
+      h1 {
+        font-size: 34px;
+        color: white;
+        font-family: 'Playfair Display', serif;
+      }
+
+      form {
+        margin: 50px auto;
+      }
+
+      .main-content {
+        margin: 50px auto;
+        background-color: white;
+        -webkit-box-shadow: -1px 20px 52px -13px rgba(0, 0, 0, 0.75);
+        -moz-box-shadow: -1px 20px 52px -13px rgba(0, 0, 0, 0.75);
+        box-shadow: -1px 20px 52px -13px rgba(0, 0, 0, 0.75);
+      }
+
+      .messages {
+        color: white;
+      }
+
+      #result {
+        text-align: center;
+      }
+
+      .btn {
+        width: 100%;
+      }
+
+      .spinner {
+        text-align: center;
+      }
+    </style>
+</body>
+
 </html>
